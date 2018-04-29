@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take'
 import { Subscription } from 'rxjs/Subscription';
 import { Product } from '../../models/product';
+import { DataTableResource } from 'angular5-data-table';
 
 @Component({
   selector: 'app-admin-products',
@@ -14,6 +15,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[];
   filteredProducts: any[];
   subscription : Subscription;
+  tableResource : DataTableResource<Product>;
   product = {};
   id;
   constructor(private productService : ProductService,

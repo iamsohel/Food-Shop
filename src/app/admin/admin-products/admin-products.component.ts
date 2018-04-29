@@ -16,14 +16,33 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   filteredProducts: any[];
   subscription : Subscription;
   tableResource : DataTableResource<Product>;
+  items : Product[] = [];
+  itemCount : number;
   product = {};
   id;
   constructor(private productService : ProductService,
     private router : Router, 
     private route : ActivatedRoute,
     )  {
-    this.subscription = this.productService.getAll().subscribe(products => this.filteredProducts = this.products = products);
+    this.subscription = this.productService.getAll()
+    .subscribe(products =>{
+      this.filteredProducts = this.products = products;
+      this.initializeTable(products);
+    });
     this.id = this.route.snapshot.paramMap.get('id');
+   }
+
+   private initializeTable(products : Product[]){
+    this.tableResource = new DataTableResource(products);
+    this.tableResource.query({offset: 0})
+    .then(items => this.items =items);
+    this.tableResource.count().then(count =>this.itemCount = count);
+   }
+
+   reloadItems(params){
+     if(!this.tableResource) return;
+    this.tableResource.query(params)
+    .then(items => this.items =items);
    }
 
    delete(){

@@ -10,23 +10,23 @@
 <data-table
 [items] = "items"
 [itemCount] ="itemCount"
-[reload] ="reloadItems($event)"
+(reload) ="reloadItems($event)"
 >
 <data-table-column
 [property] = "'title'"
 [header] ="'Title'"
 [sortable] = "true"
-[resizeable] = "true"
+[resizable] = "true"
 >
 </data-table-column>
 <data-table-column
 [property] = "'price'"
 [header] ="'Price'"
 [sortable] = "true"
-[resizeable] = "true"
+[resizable] = "true"
 >
-<ng-template #dataTableCell let-item="product">
-    {{product.price | currency: "USD":true}}
+<ng-template #dataTableCell let-item="item">
+    {{item.price | currency: "USD":true}}
 
 </ng-template>
 
@@ -35,31 +35,11 @@
 [property] = "'$key'"
 
 >
-<ng-template #dataTableCell let-item="product">
-    <a [routerLink] = "['/admin/products/',p.$key]" class="btn btn-primary"> Edit </a>
+<ng-template #dataTableCell let-item="item">
+    <a [routerLink] = "['/admin/products/',item.$key]" class="btn btn-primary"> Edit </a>
 </ng-template>
 
 </data-table-column>
 
 </data-table>
 
-<table class="table" border="1">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor = "let p of filteredProducts">
-            <td>{{p.title}}</td>
-            <td>{{p.price}}</td>
-            <td>
-                <a [routerLink] = "['/admin/products/',p.$key]" class="btn btn-primary"> Edit </a>
-                <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
-                
-            </td>
-        </tr>
-    </tbody>
-</table>

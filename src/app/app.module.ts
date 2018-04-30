@@ -6,6 +6,7 @@ import{AngularFireDatabaseModule} from 'angularfire2/database';
 import{AngularFireAuthModule} from 'angularfire2/auth';
 import{RouterModule} from '@angular/router';
 import{NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import{DataTableModule} from 'angular5-data-table';
 
 
 import { AppComponent } from './app.component';
@@ -47,7 +48,7 @@ import { ProductService } from './product.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    FormsModule,
+    FormsModule,DataTableModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
@@ -59,8 +60,10 @@ import { ProductService } from './product.service';
       { path: 'order-success', component: OrderSuccessComponent, canActivate:[AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate:[AuthGuard] },
       
-      { path: 'admin/products', component: AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+      
       { path: 'admin/products/new', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+      { path: 'admin/products/:id', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+      { path: 'admin/products', component: AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuard] },
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate:[AuthGuard, AdminAuthGuard] }
     ])    
   ],

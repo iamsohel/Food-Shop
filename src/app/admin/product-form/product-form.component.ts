@@ -11,9 +11,6 @@ import 'rxjs/add/operator/take'
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-<<<<<<< HEAD
-  constructor(private router: Ro private categoryService: CategoryService, private productService: ProductService) {
-=======
   product = {};
   id;
 
@@ -21,8 +18,7 @@ export class ProductFormComponent implements OnInit {
     private route : ActivatedRoute,
     categoryService: CategoryService,
      private productService: ProductService) {
->>>>>>> 8f21abbdcf1cbcc6b7de28f4e6d6b8219a0ee5be
-     this.categories$ = categoryService.getCategories();
+     this.categories$ = categoryService.getAll();
       this.id = this.route.snapshot.paramMap.get('id');
      if(this.id) this.productService.get(this.id).take(1).subscribe(p => this.product =p);
    }

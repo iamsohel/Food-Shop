@@ -9,7 +9,7 @@ import { ProductService } from '../../product.service';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  constructor(categoryService: CategoryService, private productService: ProductService) {
+  constructor(private router: Ro private categoryService: CategoryService, private productService: ProductService) {
      this.categories$ = categoryService.getCategories();
    }
 

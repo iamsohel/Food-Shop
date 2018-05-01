@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
-import { CategoryService } from '../category.service';
+import { Product } from './../models/product';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../models/product';
-import'rxjs/add/operator/switchMap';
+import { ProductService } from './../product.service';
+import { Component, OnInit } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent  {
   products: Product[] = [];
-  filteredProducts : Product[] = [];
-  categories$;
-  category : string;
+  filteredProducts: Product[] = [];
+  category: string;
 
-  constructor(private productService : ProductService, private categoryService : CategoryService, route : ActivatedRoute) {
+  constructor(
+    route: ActivatedRoute,
+    productService: ProductService
+  ) {
     productService
       .getAll()
       .switchMap(products => {
@@ -30,12 +31,6 @@ export class ProductsComponent implements OnInit {
           this.products.filter(p => p.category === this.category) : 
           this.products;
       });
-  
-      this.categories$ = categoryService.getAll();
-     
-   }
-
-  ngOnInit() {
   }
 
 }

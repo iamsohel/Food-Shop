@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs/Subscription';
 import { async } from '@angular/core/testing';
-import { ShoppingCartService, ShoppingCartService } from './../shopping-cart.service';
+import { ShoppingCartService } from './../shopping-cart.service';
 import { Product } from './../models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../product.service';

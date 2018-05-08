@@ -16,8 +16,12 @@ export class ProductCardComponent {
   @Input('shopping-cart') ShoppingCart;
   constructor(private cartService : ShoppingCartService) { }
 
-  AddToCart(product : Product){
-    this.cartService.AddToCart(product);
+  addToCart(){
+    this.cartService.AddToCart(this.product);
+  }
+  
+  removeFromCart(){
+    this.cartService.RemoveFromCart(this.product);
   }
 
   getQuantity(){
